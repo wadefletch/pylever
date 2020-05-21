@@ -1,0 +1,2 @@
+class LeverError(Exception):
+    pass
