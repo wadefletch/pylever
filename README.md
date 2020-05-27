@@ -13,7 +13,7 @@ $ python setup.py install
 ## Quickstart
 ```python
 from pylever import Lever
-lever = Lever('YOUR SITE NAME HERE')
+lever = Lever('YOUR SITE NAME HERE') # e.g. 'airbnb'
 for posting in Lever.list_postings(limit=6):
     print(posting.text)
 ```
