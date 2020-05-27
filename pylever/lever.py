@@ -1,6 +1,4 @@
-"""PyLever: Python bindings for the Lever Postings API
-
-"""
+"""PyLever: Python bindings for the Lever Postings API"""
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -57,7 +55,7 @@ class Lever:
                group: a string or list of strings of groups for which to return positions
 
             Returns:
-                A list of lever.Posting objects retrieved from the Lever API.
+                A list of :class:`~pvlever.Posting` objects retrieved from the Lever API.
         """
         # remove params with an empty string as value
         params = {k: v for (k, v) in locals().items() if v not in ['', 0]}
@@ -70,6 +68,9 @@ class Lever:
 
            Args:
                posting_id: the id string of the posting to be retrieved
+               
+           Returns:
+               A :class:`~pvlever.Posting` object retrieved for the given id.
 
         """
         response = self.session.get(self._endpoint(f'/v0/postings/{self.site_name}/' + posting_id)).json()
@@ -78,7 +79,15 @@ class Lever:
         return Posting(**response)
 
     def apply(self, posting_id, data):
-        """Submits an application to the given posting. UNTESTED AND UNDOCUMENTED! USE AT YOUR OWN RISK!"""
+        """Submits an application to the given posting. UNTESTED AND UNDOCUMENTED! USE AT YOUR OWN RISK!
+        
+           Args:
+               posting_id: the id string of the posting to be retrieved
+               data: the body data to be sent with the application
+               
+           Returns:
+               The application id of a successful response, or raises an error.
+        """
         response = self.session.post(self._endpoint(f'/v0/postings/{self.site_name}/{posting_id}'), data=data).json()
         if 'ok' in response.keys() and response['ok'] is False:
             raise LeverError(response['error'])
