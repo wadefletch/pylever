@@ -5,7 +5,7 @@ It is extremely simple, as the API is in v0 and has but three public endpoints.
 
 ## Installation
 ```bash
-$ git clone <INSERT LINK TO THIS REPO>
+$ git clone https://github.com/wadefletch/pylever.git
 $ cd pylever
 $ python setup.py install
 ```
